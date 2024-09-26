@@ -2065,7 +2065,7 @@ version = "0.1.2"
 
 [[deps.Trixi]]
 deps = ["CodeTracking", "ConstructionBase", "DataStructures", "DelimitedFiles", "DiffEqBase", "DiffEqCallbacks", "EllipsisNotation", "FillArrays", "ForwardDiff", "Glob", "HDF5", "HOHQMesh", "IfElse", "Kronecker", "LazySets", "LinearAlgebra", "LinearMaps", "LoopVectorization", "MPI", "MuladdMacro", "Octavian", "OffsetArrays", "OrdinaryDiffEq", "P4est", "Plots", "Polyester", "PrecompileTools", "Preferences", "Printf", "ProgressMeter", "Random", "RecipesBase", "Reexport", "Requires", "SciMLBase", "Setfield", "SharedArrays", "SimpleNonlinearSolve", "SimpleUnPack", "SparseArrays", "StartUpDG", "Static", "StaticArrayInterface", "StaticArrays", "StrideArrays", "StructArrays", "SummationByPartsOperators", "SyncBarriers", "T8code", "ThreadingUtilities", "TimerOutputs", "Triangulate", "TriplotBase", "TriplotRecipes", "UUIDs", "WriteVTK"]
-path = "../../Trixi.jl-v0.6.7+mod"
+path = "./Trixi.jl-v0.6.7+mod"
 uuid = "a7f1ee26-1774-49b1-8366-f1abc58fbfcb"
 version = "0.6.7-pre"
 

@@ -1,0 +1,35 @@
+64^3, t_f = 1.0
+16 threads
+
+N_DoF = 100663296
+
+Runtimes
+
+PERK4Multi: 5.62440945e+02
+N_t = 704
+
+#Number Elements integrated with level 1: 312
+#Number Elements integrated with level 2: 1720
+#Number Elements integrated with level 3: 4144
+#Number Elements integrated with level 4: 7888
+#Number Elements integrated with level 5: 12592
+#Number Elements integrated with level 6: 18424
+#Number Elements integrated with level 7: 25384
+#Number Elements integrated with level 8: 33928
+#Number Elements integrated with level 9: 42472
+#Number Elements integrated with level 10: 115280
+
+PERK Single 15: 7.60060957e+02
+N_t = 564
+
+CarpenterKennedy2N54: 1.38200087e+03
+N_t = 2485
+
+NDBLSRK144: 8.61973244e+02
+N_t = 622
+
+ParsaniKetchesonDeconinck3S184: 1.37509889e+03
+N_t = 755
+
+RK4: 2.07481285e+03
+N_t = 4120

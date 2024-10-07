@@ -2,7 +2,21 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/863491454.svg)](https://doi.org/10.5281/zenodo.13899247)
 
-Reproducibility Repository for the paper "Fourth-Order Paired-Explicit Runge-Kutta Methods"
+This repository contains information and code to reproduce the results presented in the article
+```bibtex
+@online{doehring2024fourth,
+  title={Fourth-Order Paired-Explicit Runge-Kutta Methods},
+  author={Doehring, Daniel and Christmann, Lars and Schlottke-Lakemper, Michael and Gassner, Gregor J.
+          and Torrilhon, Manuel},
+  year={2024},
+  eprint={2408.05470},
+  eprinttype={arxiv},
+  eprintclass={math.NA},
+  url={https://arxiv.org/abs/2408.05470},
+  journal={arXiv preprint arXiv:2408.05470},
+  doi={10.48550/arXiv.2408.05470}
+}
+```
 
 If you find these results useful, please cite the article mentioned above. If you use the implementations provided here, please also cite this repository as
 ```bibtex

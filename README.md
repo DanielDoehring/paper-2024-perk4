@@ -20,7 +20,7 @@ This repository contains information and code to reproduce the results presented
 
 If you find these results useful, please cite the article mentioned above. If you use the implementations provided here, please also cite this repository as
 ```bibtex
-@misc{doehring2024multirateRepro,
+@misc{doehring2024fourthRepro,
   title={Reproducibility repository for "Fourth-Order Paired-Explicit Runge-Kutta Methods"},
   author={Doehring, Daniel and Christmann, Lars and Schlottke-Lakemper, Michael and Gassner, Gregor J.
           and Torrilhon, Manuel},

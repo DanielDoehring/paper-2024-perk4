@@ -5,8 +5,6 @@
 @muladd begin
 #! format: noindent
 
-using Random # NOTE: Only for tests
-
 function ComputePERK4_Multi_ButcherTableau(Stages::Vector{Int64}, NumStages::Int,
                                            BasePathMonCoeffs::AbstractString)
 
@@ -161,23 +159,17 @@ mutable struct PERK4_Multi_Integrator{RealT <: Real, uType, Params, Sol, F, Alg,
     level_info_elements_acc::Vector{Vector{Int64}}
 
     level_info_interfaces_acc::Vector{Vector{Int64}}
-    level_info_mpi_interfaces_acc::Vector{Vector{Int64}}
 
     level_info_boundaries_acc::Vector{Vector{Int64}}
     level_info_boundaries_orientation_acc::Vector{Vector{Vector{Int64}}}
 
     level_info_mortars_acc::Vector{Vector{Int64}}
-    level_info_mpi_mortars_acc::Vector{Vector{Int64}}
 
     level_u_indices_elements::Vector{Vector{Int64}}
     
     t_stage::RealT
     coarsest_lvl::Int64
     n_levels::Int64
-
-    # TODO uprev, tprev for averaging callback (required for coupled Euler-acoustic simulations)
-    #uprev::uType
-    #tprev::RealT
     
     AddRHSCalls::Float64
 end
@@ -202,10 +194,6 @@ function init(ode::ODEProblem, alg::PERK4_Multi;
     k1 = zero(u0)
     k_higher = zero(u0)
 
-    # TODO: Only for averaging callback (required for coupled Euler-acoustic simulations)
-    #uprev = zero(u0)
-    #tprev = zero(ode.tspan[1])
-
     t0 = first(ode.tspan)
     iter = 0
 
@@ -219,7 +207,6 @@ function init(ode::ODEProblem, alg::PERK4_Multi;
     level_info_elements_acc = [Vector{Int64}() for _ in 1:n_levels]
 
     level_info_interfaces_acc = [Vector{Int64}() for _ in 1:n_levels]
-    level_info_mpi_interfaces_acc = [Vector{Int64}() for _ in 1:n_levels]
 
     level_info_boundaries_acc = [Vector{Int64}() for _ in 1:n_levels]
     level_info_boundaries_orientation_acc = [[Vector{Int64}()
@@ -227,7 +214,6 @@ function init(ode::ODEProblem, alg::PERK4_Multi;
                                              for _ in 1:n_levels]
 
     level_info_mortars_acc = [Vector{Int64}() for _ in 1:n_levels]
-    level_info_mpi_mortars_acc = [Vector{Int64}() for _ in 1:n_levels]
 
     
     partitioning_variables!(level_info_elements, 
@@ -237,19 +223,6 @@ function init(ode::ODEProblem, alg::PERK4_Multi;
                             level_info_boundaries_orientation_acc,
                             level_info_mortars_acc,
                             n_levels, n_dims, mesh, dg, cache, alg)
-    
-    
-    #=
-    partitioning_variables!(level_info_elements, 
-                            level_info_elements_acc, 
-                            level_info_interfaces_acc,
-                            level_info_mpi_interfaces_acc,
-                            level_info_boundaries_acc, 
-                            level_info_boundaries_orientation_acc,
-                            level_info_mortars_acc,
-                            level_info_mpi_mortars_acc,
-                            n_levels, n_dims, mesh, dg, cache, alg)
-    =#
 
     for i in 1:n_levels
         println("#Number Elements integrated with level $i: ", length(level_info_elements[i]))
@@ -270,18 +243,15 @@ function init(ode::ODEProblem, alg::PERK4_Multi;
                                         level_info_elements, level_info_elements_acc,
 
                                         level_info_interfaces_acc,
-                                        level_info_mpi_interfaces_acc,
 
                                         level_info_boundaries_acc,
                                         level_info_boundaries_orientation_acc,
 
                                         level_info_mortars_acc,
-                                        level_info_mpi_mortars_acc,
 
                                         level_u_indices_elements,
                                         
                                         t0, -1, n_levels,
-                                        #uprev, tprev,
                                         0.0)
 
     # initialize callbacks
@@ -404,18 +374,6 @@ function step!(integrator::PERK4_Multi_Integrator)
                         integrator.level_info_boundaries_orientation_acc[1],
                         integrator.level_info_mortars_acc[1],
                         1)
-        
-
-        #=
-        integrator.f(integrator.du, integrator.u_tmp, prob.p, integrator.t_stage, 
-                        integrator.level_info_elements_acc[1],
-                        integrator.level_info_interfaces_acc[1],
-                        integrator.level_info_mpi_interfaces_acc[1],
-                        integrator.level_info_boundaries_acc[1],
-                        integrator.level_info_boundaries_orientation_acc[1],
-                        integrator.level_info_mortars_acc[1],
-                        integrator.level_info_mpi_mortars_acc[1])
-        =#
 
         # Update finest level only
         @threaded for u_ind in integrator.level_u_indices_elements[1]
@@ -471,18 +429,6 @@ function step!(integrator::PERK4_Multi_Integrator)
                             integrator.level_info_boundaries_orientation_acc[integrator.coarsest_lvl],
                             integrator.level_info_mortars_acc[integrator.coarsest_lvl],
                             integrator.coarsest_lvl)
-                
-
-                #=
-                integrator.f(integrator.du, integrator.u_tmp, prob.p, integrator.t_stage, 
-                            integrator.level_info_elements_acc[integrator.coarsest_lvl],
-                            integrator.level_info_interfaces_acc[integrator.coarsest_lvl],
-                            integrator.level_info_mpi_interfaces_acc[integrator.coarsest_lvl],
-                            integrator.level_info_boundaries_acc[integrator.coarsest_lvl],
-                            integrator.level_info_boundaries_orientation_acc[integrator.coarsest_lvl],
-                            integrator.level_info_mortars_acc[integrator.coarsest_lvl],
-                            integrator.level_info_mpi_mortars_acc[integrator.coarsest_lvl])
-                =#
 
                 # Update k_higher of relevant levels
                 for level in 1:integrator.coarsest_lvl

@@ -34,5 +34,7 @@ include("methods_PERK4_Multi_var_c.jl")
 include("methods_PERK4_EA.jl")
 include("methods_PERK4Multi_EA.jl")
 
+include("methods_PERK4Multi_MPI.jl")
+
 include("methods_SSP.jl")
 end # @muladd

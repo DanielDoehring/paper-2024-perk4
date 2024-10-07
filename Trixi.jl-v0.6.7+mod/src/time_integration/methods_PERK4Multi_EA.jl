@@ -66,13 +66,11 @@ mutable struct PERK4_Multi_EA_Integrator{RealT <: Real, uType, Params, Sol, F, A
     level_info_elements_acc::Vector{Vector{Int64}}
 
     level_info_interfaces_acc::Vector{Vector{Int64}}
-    level_info_mpi_interfaces_acc::Vector{Vector{Int64}}
 
     level_info_boundaries_acc::Vector{Vector{Int64}}
     level_info_boundaries_orientation_acc::Vector{Vector{Vector{Int64}}}
 
     level_info_mortars_acc::Vector{Vector{Int64}}
-    level_info_mpi_mortars_acc::Vector{Vector{Int64}}
 
     level_u_indices_elements::Vector{Vector{Int64}}
     
@@ -124,7 +122,6 @@ function init(ode::ODEProblem, alg::PERK4_Multi_EA;
     level_info_elements_acc = [Vector{Int64}() for _ in 1:n_levels]
 
     level_info_interfaces_acc = [Vector{Int64}() for _ in 1:n_levels]
-    level_info_mpi_interfaces_acc = [Vector{Int64}() for _ in 1:n_levels]
 
     level_info_boundaries_acc = [Vector{Int64}() for _ in 1:n_levels]
     level_info_boundaries_orientation_acc = [[Vector{Int64}()
@@ -132,7 +129,6 @@ function init(ode::ODEProblem, alg::PERK4_Multi_EA;
                                              for _ in 1:n_levels]
 
     level_info_mortars_acc = [Vector{Int64}() for _ in 1:n_levels]
-    level_info_mpi_mortars_acc = [Vector{Int64}() for _ in 1:n_levels]
 
     
     partitioning_variables!(level_info_elements, 
@@ -163,13 +159,11 @@ function init(ode::ODEProblem, alg::PERK4_Multi_EA;
                                         level_info_elements, level_info_elements_acc,
 
                                         level_info_interfaces_acc,
-                                        level_info_mpi_interfaces_acc,
 
                                         level_info_boundaries_acc,
                                         level_info_boundaries_orientation_acc,
 
                                         level_info_mortars_acc,
-                                        level_info_mpi_mortars_acc,
 
                                         level_u_indices_elements,
                                         

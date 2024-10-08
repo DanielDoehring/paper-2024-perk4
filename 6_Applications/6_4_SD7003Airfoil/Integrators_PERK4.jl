@@ -171,7 +171,7 @@ ode_algorithm = PERK4_Para_Multi(Stages, path, dtRatios)
 
 dt = 1e-3 # PERK4, dt_c = 2e-4
 
-#@assert Threads.nthreads() == 24 "Provided data obtained on 24 threads"
+@assert Threads.nthreads() == 24 "Provided data obtained on 24 threads"
 
 sol = Trixi.solve(ode, ode_algorithm,
                   dt = dt,

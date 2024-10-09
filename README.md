@@ -87,7 +87,7 @@ julia --project=/YOUR/PATH/TO/paper-2024-perk4
 
 ### Running the code
 
-The scripts for validations and applications are located in the `elixirs` directory.
+The scripts for validations and applications are located in the `5_Validation` and `6_Applications` directory, respectively.
 
 To execute them provide the respective path:
 
@@ -101,6 +101,7 @@ To specify the number of threads the [`--threads` flag](https://docs.julialang.o
 ```bash
 julia --project=. --threads 24 ./6_Applications/6_4_SD7003Airfoil/Integrators_PERK4.jl
 ```
+The number of threads used for the examples are given in the `README.md` in `6_Applications`.
 
 ## Authors
 

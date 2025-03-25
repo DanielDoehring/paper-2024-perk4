@@ -202,6 +202,13 @@ sol = Trixi.solve(ode, ode_algorithm,
 
 summary_callback() # print the timer summary
 
+using Plots
+
+pd = PlotData2D(sol)
+
+plot(pd["rho"], c = :jet)
+plot(getmesh(pd))
+
 ###############################################################################
 
 #=

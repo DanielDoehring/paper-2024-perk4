@@ -53,7 +53,7 @@ semi = SemidiscretizationHyperbolic(mesh, equations, initial_condition, solver)
 ###############################################################################
 # ODE solvers, callbacks etc.
 
-tspan = (0.0, 1.0) 
+tspan = (0.0, 0.0) 
 ode = semidiscretize(semi, tspan)
 
 # At the beginning of the main loop, the SummaryCallback prints a summary of the simulation setup
@@ -91,11 +91,17 @@ ode_algorithm = PERK4_Multi_var_c(Stages, "./", corr_c)
 @assert Threads.nthreads() == 16 "Provided data obtained on 16 threads"
 
 sol = Trixi.solve(ode, ode_algorithm, 
-                  #dt = 1.4205e-03, # Multi PERK
-                  dt = 1.77556818e-03, # Single PERK 15
+                  dt = 1.4205e-03, # Multi PERK
+                  #dt = 1.77556818e-03, # Single PERK 15
                   save_everystep = false, callback = callbacks);
 
 summary_callback() # print the timer summary
+
+using Plots
+
+pd = PlotData2D(sol)
+
+plot(pd["rho_prime"], c = :jet)
          
 # OrdinaryDiffEq's `solve` method evolves the solution in time and executes the passed callbacks
 sol = solve(ode, CarpenterKennedy2N54(williamson_condition = false, thread = OrdinaryDiffEq.True()),

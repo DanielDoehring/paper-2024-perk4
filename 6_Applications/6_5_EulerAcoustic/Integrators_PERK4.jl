@@ -430,4 +430,4 @@ using Plots
 pd = PlotData2D(sol)
 
 # See figure 7.7 from Michaels dissertation
-plot(pd["p_prime"], clims=(-0.0002, 0.0002), xlims=(-100,100), ylims=(-100,100))
+plot(pd["p_prime"], clims=(-0.0002, 0.0002), xlims=(-100,100), ylims=(-100,100), c = :jet)

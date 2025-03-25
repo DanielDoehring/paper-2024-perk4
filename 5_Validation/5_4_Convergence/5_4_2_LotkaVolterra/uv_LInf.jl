@@ -87,7 +87,7 @@ N = 14
 include("PERK4_Multi_2Level.jl")
 
 Stages = [9, 5]
-ode_algorithm = PERK4_Multi(Stages, "/home/daniel/git/Paper_PERK4/Data/LotkaVolterra/")
+ode_algorithm = PERK4_Multi(Stages, "./5_Validation/5_4_Convergence/5_4_2_LotkaVolterra/")
 
 errors = zeros(N)
 

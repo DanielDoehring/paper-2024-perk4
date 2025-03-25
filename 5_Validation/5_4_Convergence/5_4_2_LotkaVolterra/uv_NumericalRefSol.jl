@@ -1,5 +1,4 @@
 using NLsolve, OrdinaryDiffEq, LinearAlgebra, Plots
-using QuadGK
 
 # See https://arxiv.org/pdf/2303.09317.pdf AN EXACT CLOSED-FORM SOLUTION OF THE LOTKA-VOLTERRA EQUATIONS
 
@@ -41,10 +40,7 @@ sol = nlsolve(U_h, [xi_minus], ftol = 0.0)
 xi_minus = sol.zero[1]
 
 ### Compute tstar ###
-
-sol = quadgk_count(x -> 1.0/sqrt((h + 1 + x)^2 - exp(2*x)), xi_minus, xi_plus)
-tstar = sol[1]
-
+tstar = 5.430320388771402
 
 ### Compute preys (u) and predators (v) populations from xi (analytical solution) ###
 function uv(h, xi)
@@ -56,16 +52,14 @@ function uv(h, xi)
 
   return u, v
 end
-#u, v = uv(h, xi_desired)
-
 
 # If xi_desired = xi_plus
 u, v = (h + 1 + xi_plus, h + 1 + xi_plus)
 #u, v = uv(h, xi_plus)
 
 # Compute IC 
-#u0, v0 = uv(h, xi_minus)
-u0, v0 = (h + 1 + xi_minus, h + 1 + xi_minus)
+u0, v0 = uv(h, xi_minus)
+#u0, v0 = (h + 1 + xi_minus, h + 1 + xi_minus)
 
 y0 = [u0; v0]
 
@@ -84,6 +78,11 @@ tspan = (0.0, tstar)
 p = 42.0
 prob = ODEProblem(LotkaVolterra, y0, tspan, p)
 
+# Generate numerical reference solution as requested by reviewers
+tols = 1e-15
+ref_sol = solve(prob, DP8(), abstol = tols, reltol = tols)
+(u, v) = ref_sol.u[end]
+
 N = 14
 
 #########################################
@@ -97,15 +96,11 @@ ode_algorithm = PERK4_Multi(Stages, "./5_Validation/5_4_Convergence/5_4_2_LotkaV
 
 errors = zeros(N)
 
-println("Average errors:")
-
 for i = 0:N-1
   dt = 1.0/(2.0^i)
   #println("dt: ", dt)
   sol_ode = solve_(prob, ode_algorithm, dt = dt);
-  
-  # Yields expected order of convergence
-  errors[i+1] = abs((sol_ode.u[end][1] + sol_ode.u[end][2])/2 - u)
 
+  errors[i+1] = norm(sol_ode.u[end] - [u, v], Inf)
   println(errors[i+1])
 end

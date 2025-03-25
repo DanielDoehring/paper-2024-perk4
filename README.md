@@ -1,6 +1,6 @@
 # paper-2024-perk4
 [![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/863491454.svg)](https://doi.org/10.5281/zenodo.13899247)
+[![DOI](https://zenodo.org/badge/863491454.svg)](https://doi.org/10.5281/zenodo.13899246)
 
 This repository contains information and code to reproduce the results presented in the article
 ```bibtex

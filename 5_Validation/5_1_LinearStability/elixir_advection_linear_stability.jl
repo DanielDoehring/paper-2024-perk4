@@ -119,9 +119,9 @@ count(x->x==1.0, I_Coarse)
 K1 = dt * A
 K_higher = copy(K1)
 if length(ActiveLevels[2]) == 1
-  K_higher = dt * AFine * (I + c[2]*K1)
+  global K_higher = dt * AFine * (I + c[2]*K1)
 else
-  K_higher = dt * A * (I + c[2]*K1)
+  global K_higher = dt * A * (I + c[2]*K1)
 end
 
 for stage = 3:(NumStagesMax - 3)
@@ -131,9 +131,9 @@ for stage = 3:(NumStagesMax - 3)
                AMatrices[stage - 2, 2, 2] * I_Coarse * K_higher
                  
   if length(ActiveLevels[stage]) == 1
-    K_higher = dt * AFine * K_temp
+    global K_higher = dt * AFine * K_temp
   else
-    K_higher = dt * A * K_temp
+    global K_higher = dt * A * K_temp
   end
 end
 
@@ -142,10 +142,10 @@ for stage = 1:3
   K_temp = I + AMatrix[stage, 1] * K1 + 
                AMatrix[stage, 2] * K_higher
 
-  K_higher = dt * A * K_temp
+  global K_higher = dt * A * K_temp
 
   if stage == 2
-    KS1 = K_higher
+    global KS1 = K_higher
   end
 end
 

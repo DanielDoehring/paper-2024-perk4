@@ -159,7 +159,7 @@ amr_callback = AMRCallback(semi, amr_controller,
 callbacksPERK = CallbackSet(summary_callback,
                             amr_callback,
                             alive_callback,
-                            analysis_callback)                 
+                            analysis_callback)
 
 ###############################################################################
 # run the simulation

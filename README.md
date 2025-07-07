@@ -58,7 +58,7 @@ git clone git@github.com:DanielDoehring/paper-2024-perk4.git
 If you do not have git installed you can obtain a `.zip` and unpack it:
 ```bash
 wget https://github.com/DanielDoehring/paper-2024-perk4/archive/refs/heads/main.zip
-unzip paper-2024-perk4
+unzip main.zip -d paper-2024-perk4
 ```
 
 To instantiate the Julia environment execute the following two commands:

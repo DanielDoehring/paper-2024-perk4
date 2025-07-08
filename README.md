@@ -58,7 +58,8 @@ git clone git@github.com:DanielDoehring/paper-2024-perk4.git
 If you do not have git installed you can obtain a `.zip` and unpack it:
 ```bash
 wget https://github.com/DanielDoehring/paper-2024-perk4/archive/refs/heads/main.zip
-unzip main.zip -d paper-2024-perk4
+unzip main.zip
+mv paper-2024-perk4-main/ paper-2024-perk4
 ```
 
 To instantiate the Julia environment execute the following two commands:
@@ -74,13 +75,13 @@ and *replace* the `julia` calls from this README with
 
 ### Project initialization
 
-If you installed Trixi.jl this way, you always have to start Julia with the `--project` flag set to your `paper-2024-perk4-main` directory, e.g.,
+If you installed Trixi.jl this way, you always have to start Julia with the `--project` flag set to your `paper-2024-perk4` directory, e.g.,
 ```bash
 julia --project=.
 ```
-if already inside the `paper-2024-perk4-main` directory.
+if already inside the `paper-2024-perk4` directory.
 
-If you do not execute from the `paper-2024-perk4-main` directory, you have to call `julia` with
+If you do not execute from the `paper-2024-perk4` directory, you have to call `julia` with
 ```bash
 julia --project=/YOUR/PATH/TO/paper-2024-perk4
 ```

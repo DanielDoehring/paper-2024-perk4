@@ -63,7 +63,7 @@ unzip main.zip -d paper-2024-perk4
 
 To instantiate the Julia environment execute the following two commands:
 ```bash
-cd paper-2024-perk4/paper-2024-perk4-main
+cd paper-2024-perk4/paper-2024-perk4-main/
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```
 
@@ -74,13 +74,13 @@ and *replace* the `julia` calls from this README with
 
 ### Project initialization
 
-If you installed Trixi.jl this way, you always have to start Julia with the `--project` flag set to your `paper-2024-perk4` directory, e.g.,
+If you installed Trixi.jl this way, you always have to start Julia with the `--project` flag set to your `paper-2024-perk4-main` directory, e.g.,
 ```bash
 julia --project=.
 ```
-if already inside the `paper-2024-perk4` directory.
+if already inside the `paper-2024-perk4-main` directory.
 
-If you do not execute from the `paper-2024-perk4` directory, you have to call `julia` with
+If you do not execute from the `paper-2024-perk4-main` directory, you have to call `julia` with
 ```bash
 julia --project=/YOUR/PATH/TO/paper-2024-perk4
 ```

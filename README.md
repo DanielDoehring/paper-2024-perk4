@@ -63,7 +63,7 @@ unzip main.zip -d paper-2024-perk4
 
 To instantiate the Julia environment execute the following two commands:
 ```bash
-cd paper-2024-perk4
+cd paper-2024-perk4/paper-2024-perk4-main
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```
 

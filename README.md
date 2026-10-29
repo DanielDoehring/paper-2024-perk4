@@ -4,17 +4,15 @@
 
 This repository contains information and code to reproduce the results presented in the article
 ```bibtex
-@online{doehring2024fourth,
-  title={Fourth-Order Paired-Explicit Runge-Kutta Methods},
-  author={Doehring, Daniel and Christmann, Lars and Schlottke-Lakemper, Michael and Gassner, Gregor J.
-          and Torrilhon, Manuel},
-  year={2024},
-  eprint={2408.05470},
-  eprinttype={arxiv},
-  eprintclass={math.NA},
-  url={https://arxiv.org/abs/2408.05470},
-  journal={arXiv preprint arXiv:2408.05470},
-  doi={10.48550/arXiv.2408.05470}
+@article{doehring2025fourth,
+  title={Fourth-order paired-explicit Runge-Kutta methods},
+  author={Doehring, Daniel and Christmann, Lars and Schlottke-Lakemper, Michael and Gassner, Gregor J and Torrilhon, Manuel},
+  journal={Computational Science and Engineering},
+  volume={2},
+  number={1},
+  pages={1},
+  year={2025},
+  publisher={Springer}
 }
 ```
 

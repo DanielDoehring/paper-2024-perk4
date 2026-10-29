@@ -12,7 +12,8 @@ This repository contains information and code to reproduce the results presented
   number={1},
   pages={1},
   year={2025},
-  publisher={Springer}
+  publisher={Springer},
+  doi={https://doi.org/10.1007/s44207-025-00005-4}
 }
 ```
 
